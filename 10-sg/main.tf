@@ -42,7 +42,8 @@ module "backend_alb" {
   vpc_id = local.vpc_id # getting the vpc id value from locals
 }
 
-# bastion security group rule
+# backend alb security group rule
+# backend ALB accepting connections from my bastion host on port no 80
 resource "aws_security_group_rule" "backend_alb_bastion" {
   type              = "ingress"
   from_port         = 80
