@@ -10,6 +10,12 @@ module "vpc" {
   
 }
 
-output "vpc_id" {
-   value = module.vpc.vpc_id #just to print the vpc id in output
+#just to print the vpc id in output
+output "vpc_id" { # vpc_id - any name
+   value = module.vpc.vpc_id 
+}
+
+#just to print the public subnet ids in output
+output "vpc_public_subnet_ids" { #vpc_public_subnet_ids - any name
+  value = module.vpc.public_subnet_ids
 }
