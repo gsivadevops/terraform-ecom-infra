@@ -30,3 +30,11 @@ variable "backend_alb_sg_description" {
     default = "created sg for backend alb"
 }
 
+variable "vpn_sg_name" {
+    default = "vpn-sg"
+}
+
+variable "vpn_sg_description" {
+    default = "created sg for vpn"
+}
+
