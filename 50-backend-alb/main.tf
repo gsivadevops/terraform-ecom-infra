@@ -1,8 +1,9 @@
+#creation backend load balancer using BastionHost
 module "backend_alb" {
   source = "terraform-aws-modules/alb/aws"
   version = "9.16.0"
   internal = true
-  name    = "${var.project}-${var.environment}-backend-applb" #roboshop-dev-backend-applb
+  name    = "${var.project}-${var.environment}-backend-alb" #roboshop-dev-backend-applb
   vpc_id  = local.vpc_id
   subnets = local.private_subnet_ids
   create_security_group = false
@@ -11,11 +12,12 @@ module "backend_alb" {
   tags = merge(
     local.common_tags,
     {
-        Name = "${var.project}-${var.environment}-backend-applb"
+        Name = "${var.project}-${var.environment}-backend-alb"
     }
   )
 }
 
+# listener for loadbalance with target group as static
 resource "aws_lb_listener" "backend_alb" {
   load_balancer_arn = module.backend_alb.arn
   port              = "80"
