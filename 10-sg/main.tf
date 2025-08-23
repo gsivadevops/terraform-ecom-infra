@@ -102,6 +102,7 @@ resource "aws_security_group_rule" "vpn_943" {
   security_group_id = module.vpn.sg_id
 }
 
+#Rule to allow traffic from VPN
 #Backend ALB accepting connections from VPN on port no 80
 resource "aws_security_group_rule" "backend_alb_vpn" {
   type              = "ingress"
