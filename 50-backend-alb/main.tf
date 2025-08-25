@@ -1,4 +1,4 @@
-#creation backend load balancer using BastionHost
+# creation backend load balancer using BastionHost
 module "backend_alb" {
   source = "terraform-aws-modules/alb/aws"
   version = "9.16.0"
@@ -17,7 +17,7 @@ module "backend_alb" {
   )
 }
 
-# listener for loadbalance with target group as static
+# listener for load balancer with target group as static
 resource "aws_lb_listener" "backend_alb" {
   load_balancer_arn = module.backend_alb.arn
   port              = "80"
@@ -31,5 +31,18 @@ resource "aws_lb_listener" "backend_alb" {
       message_body = "<h1>Hello, I am from Backend ALB</h1>"
       status_code  = "200"
     }
+  }
+}
+
+# creation of route53 record for backend alb
+resource "aws_route53_record" "backend_alb" {
+  zone_id = var.zone_id
+  name    = "*.backend-dev.${var.zone_name}"
+  type    = "A"
+
+  alias {
+    name                   = module.backend_alb.dns_name
+    zone_id                = module.backend_alb.zone_id # This is the ZONE ID of ALB
+    evaluate_target_health = true
   }
 }
