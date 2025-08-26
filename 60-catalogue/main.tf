@@ -81,12 +81,10 @@ resource "aws_ami_from_instance" "catalogue" {
 resource "terraform_data" "catalogue_delete" {
   triggers_replace = [
     aws_instance.catalogue.id
-  ]
-  
+  ]  
   # make sure you have aws configure in your laptop
   provisioner "local-exec" {
     command = "aws ec2 terminate-instances --instance-ids ${aws_instance.catalogue.id}"
   }
-
   depends_on = [aws_ami_from_instance.catalogue]
 }
