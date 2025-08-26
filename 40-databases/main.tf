@@ -89,7 +89,7 @@ resource "aws_instance" "mysql" {
   vpc_security_group_ids = [local.mysql_sg_id]
   subnet_id = local.database_subnet_id
   #Role configuration to fetch SSM Param for mysql root password
-  iam_instance_profile = " EC2RoletoFetchSSMParams"
+  iam_instance_profile = "EC2RoletoFetchSSMParams"
   tags = merge(
     local.common_tags,
     {
@@ -166,4 +166,44 @@ resource "terraform_data" "rabbitmq" {
       "sudo sh /tmp/bootstrap.sh rabbitmq ${var.environment}"
     ]
   }
+}
+
+# route53 record for mongodb
+resource "aws_route53_record" "mongodb" {
+  zone_id = var.zone_id
+  name    = "mongodb-${var.environment}.${var.zone_name}" #mongodb-dev.devopslearning.store
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.mongodb.private_ip]
+  allow_overwrite = true
+}
+
+# route53 record for redis
+resource "aws_route53_record" "redis" {
+  zone_id = var.zone_id
+  name    = "redis-${var.environment}.${var.zone_name}" #redis-dev.devopslearning.store
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.redis.private_ip]
+  allow_overwrite = true
+}
+
+# route53 record for mysql
+resource "aws_route53_record" "mysql" {
+  zone_id = var.zone_id
+  name    = "mysql-${var.environment}.${var.zone_name}" #mysql-dev.devopslearning.store
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.mysql.private_ip]
+  allow_overwrite = true
+}
+
+# route53 record for rabbitmq
+resource "aws_route53_record" "rabbitmq" {
+  zone_id = var.zone_id
+  name    = "rabbitmq-${var.environment}.${var.zone_name}" #rabbitmq-dev.devopslearning.store
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.rabbitmq.private_ip]
+  allow_overwrite = true
 }

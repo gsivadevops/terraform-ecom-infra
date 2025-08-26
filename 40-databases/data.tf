@@ -38,6 +38,6 @@ data "aws_ssm_parameter" "database_subnet_ids" {
   name = "/${var.project}/${var.environment}/database_subnet_ids"
 }
 
-data "aws_ssm_parameter" "mysql_root_password" {
-  name = "/roboshop/mysql/mysql_root_password"
-}
+# data "aws_ssm_parameter" "mysql_root_password" {
+#   name = "/roboshop/mysql/mysql_root_password"
+# }
