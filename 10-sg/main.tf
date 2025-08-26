@@ -203,9 +203,8 @@ module "catalogue" {
     source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
     project = var.project
     environment = var.environment
-
-    sg_name = "catalogue"
-    sg_description = "for catalogue"
+    sg_name = var.catalogue_sg_name
+    sg_description = var.catalogue_sg_description
     vpc_id = local.vpc_id
 }
 

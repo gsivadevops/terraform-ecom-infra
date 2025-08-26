@@ -90,5 +90,13 @@ variable "rabbitmq_ports_vpn" {
     default = [22, 5672]
 }
 
+# catalogue
+variable "catalogue_sg_name" {
+    default = "catalogue-sg"
+}
+
+variable "catalogue_sg_description" {
+    default = "created sg for catalogue"
+}
 
 
