@@ -89,7 +89,7 @@ resource "aws_instance" "mysql" {
   vpc_security_group_ids = [local.mysql_sg_id]
   subnet_id = local.database_subnet_id
   #Role configuration to fetch SSM Param for mysql root password
-  iam_instance_profile = "EC2RoletoFetchSSMParams"
+  iam_instance_profile = "EC2RoleToFecthSSMParams"
   tags = merge(
     local.common_tags,
     {
@@ -120,7 +120,7 @@ resource "terraform_data" "mysql" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/bootstrap.sh",
-      #"sudo sh /tmp/bootstrap.sh mysql ${var.environment} local.mysql_root_password" 
+      # "sudo sh /tmp/bootstrap.sh mysql ${var.environment} local.mysql_root_password" 
       "sudo sh /tmp/bootstrap.sh mysql ${var.environment}"
     ]
   }

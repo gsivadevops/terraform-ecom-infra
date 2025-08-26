@@ -39,5 +39,5 @@ data "aws_ssm_parameter" "database_subnet_ids" {
 }
 
 # data "aws_ssm_parameter" "mysql_root_password" {
-#   name = "/roboshop/mysql/mysql_root_password"
+#   name = "/roboshop/dev/mysql/mysql_root_password"
 # }
