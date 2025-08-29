@@ -11,7 +11,15 @@ variable "frontend_sg_name" {
 }
 
 variable "frontend_sg_description" {
-    default = "created sg for frontend instance"
+    default = "created sg for frontend alb"
+}
+
+variable "frontend_alb_sg_name" {
+    default = "frontend-alb-sg"
+}
+
+variable "frontend_alb_sg_description" {
+    default = "created sg for frontend alb"
 }
 
 variable "bastion_sg_name" {
@@ -47,7 +55,7 @@ variable "mongodb_sg_description" {
     default = "created sg for mongodb"
 }
 
-variable "mongodb_ports_vpn" { # just keep as mongodb_ports
+variable "mongodb_ports" { # just keep as mongodb_ports
     default = [22, 27017]
 }
 
@@ -60,7 +68,7 @@ variable "redis_sg_description" {
     default = "created sg for redis"
 }
 
-variable "redis_ports_vpn" {
+variable "redis_ports" {
     default = [22, 6379]
 }
 
@@ -73,7 +81,7 @@ variable "mysql_sg_description" {
     default = "created sg for mysql"
 }
 
-variable "mysql_ports_vpn" {
+variable "mysql_ports" {
     default = [22, 3306]
 }
 
@@ -86,7 +94,7 @@ variable "rabbitmq_sg_description" {
     default = "created sg for rabbitmq"
 }
 
-variable "rabbitmq_ports_vpn" {
+variable "rabbitmq_ports" {
     default = [22, 5672]
 }
 
@@ -99,4 +107,38 @@ variable "catalogue_sg_description" {
     default = "created sg for catalogue"
 }
 
+# user
+variable "user_sg_name" {
+    default = "user-sg"
+}
 
+variable "user_sg_description" {
+    default = "created sg for user"
+}
+
+# cart
+variable "cart_sg_name" {
+    default = "cart-sg"
+}
+
+variable "cart_sg_description" {
+    default = "created sg for cart"
+}
+
+# shipping
+variable "shipping_sg_name" {
+    default = "shipping-sg"
+}
+
+variable "shipping_sg_description" {
+    default = "created sg for shipping"
+}
+
+# payment
+variable "payment_sg_name" {
+    default = "payment-sg"
+}
+
+variable "payment_sg_description" {
+    default = "created sg for payment"
+}
