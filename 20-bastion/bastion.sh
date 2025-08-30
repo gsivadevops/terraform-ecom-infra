@@ -1,4 +1,5 @@
 # user data to install terraform and increse memory space (Resize EBS Storage)
+
 #!/bin/bash
 
 # terraform installation
