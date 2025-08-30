@@ -9,6 +9,7 @@ resource "aws_instance" "bastion" {
     volume_size = 50
     volume_type = "gp3" # or "gp2", depending on your preference
   }
+  
   user_data = file("bastion.sh") # user data to install terraform and increasing the memory space
   iam_instance_profile = "TerraformAdmin" #Role configuration for using aws configure
 
