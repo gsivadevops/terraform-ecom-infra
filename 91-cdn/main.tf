@@ -8,9 +8,9 @@ resource "aws_cloudfront_distribution" "roboshop" {
         origin_protocol_policy = "https-only"
         origin_ssl_protocols   = ["TLSv1.2"]
     }
-    origin_id                = "cdn.${var.zone_name}"
+    origin_id  = "cdn.${var.zone_name}"
   }
-  enabled             = true
+  enabled = true
   aliases = ["cdn.${var.zone_name}"]
 
   # Cloudefront Cache behavior
@@ -39,7 +39,7 @@ resource "aws_cloudfront_distribution" "roboshop" {
   restrictions {
     geo_restriction {
       restriction_type = "whitelist"
-      locations        = ["US", "CA", "GB", "DE"]
+      locations = ["IN", "US", "CA", "GB", "DE"]
     }
   }
 
