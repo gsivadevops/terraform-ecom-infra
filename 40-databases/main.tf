@@ -88,7 +88,7 @@ resource "aws_instance" "mysql" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [local.mysql_sg_id]
   subnet_id = local.database_subnet_id
-  #Role configuration to fetch SSM Param for mysql root password
+  #Role configuration to fetch SSM Param for mysql root password without using aws configure
   iam_instance_profile = "EC2RoleToFecthSSMParams"
   tags = merge(
     local.common_tags,
