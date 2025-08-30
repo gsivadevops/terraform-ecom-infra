@@ -10,9 +10,7 @@ resource "aws_cloudfront_distribution" "roboshop" {
     }
     origin_id                = "cdn.${var.zone_name}"
   }
-
   enabled             = true
-
   aliases = ["cdn.${var.zone_name}"]
 
   # Cloudefront Cache behavior
@@ -35,7 +33,6 @@ resource "aws_cloudfront_distribution" "roboshop" {
     viewer_protocol_policy = "https-only"
     cache_policy_id  = data.aws_cloudfront_cache_policy.cacheEnable.id
   }
-
 
   price_class = "PriceClass_200"
 
@@ -61,7 +58,7 @@ resource "aws_cloudfront_distribution" "roboshop" {
 # Route53 record for Cloudfront - CDN
 resource "aws_route53_record" "frontend_alb" {
   zone_id = var.zone_id
-  name    = "cdn.${var.zone_name}" #dev.devopslearning.store
+  name    = "cdn.${var.zone_name}" #cdn.devopslearning.store
   type    = "A"
 
   alias {
